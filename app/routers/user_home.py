@@ -19,3 +19,8 @@ async def user_home_view(
             "user": user
         }
     )
+
+@router.get("/api/users")
+def get_users(db: SessionDep):
+    users = db.exec(select(User)).all()
+    return users

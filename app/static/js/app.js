@@ -20,3 +20,27 @@ async function main(){
 }
 
 main();
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const res = await fetch("/api/users");
+        const users = await res.json();
+
+        const table = document.getElementById("result");
+        table.innerHTML = "";
+
+        users.forEach(user => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+            `;
+
+            table.appendChild(row);
+        });
+
+    } catch (err) {
+        console.error("Error:", err);
+    }
+});
