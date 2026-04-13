@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi import status
+from fastapi import status, select
 from models import User, Todo
 from app.dependencies.session import SessionDep
 from app.dependencies.auth import AuthDep, IsUserLoggedIn, get_current_user, is_admin
