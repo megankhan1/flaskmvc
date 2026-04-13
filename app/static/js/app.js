@@ -23,24 +23,25 @@ main();
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const res = await fetch("/api/users");
-        const users = await res.json();
+        const res = await fetch("/api/todos");
+        const todos = await res.json();
 
         const table = document.getElementById("result");
         table.innerHTML = "";
 
-        users.forEach(user => {
+        todos.forEach(todo => {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                <td>${user.id}</td>
-                <td>${user.username}</td>
+                <td>${todo.id}</td>
+                <td>${todo.text}</td>
+                <td>${todo.done ? "✅" : "❌"}</td>
             `;
 
             table.appendChild(row);
         });
 
     } catch (err) {
-        console.error("Error:", err);
+        console.error("Error loading todos:", err);
     }
 });
